@@ -36,7 +36,7 @@ int main(int argc, char **argv) {
 
 	//creating TCP based listen socket
 	int listenfd= 0;
-	if((listenfd= socket(AF_INET,SOCK_STREAM, 0)) == -1){
+	if((listenfd= socket(AF_INET,SOCK_STREAM, 0)) == -1) {
 		sysErr("server fault: create socket", -1);
 	}
 
@@ -60,21 +60,21 @@ int main(int argc, char **argv) {
 	}
 
 	//endless loop that accepts and handles client requests
-	while(true){
+	while(true) {
 		//accepting next request in the queue and setting up connction socket
 		int connfd=0;
-		if((connfd= accept(listenfd, (struct sockaddr*)&client_addr, &len))==-1){
+		if((connfd= accept(listenfd, (struct sockaddr*)&client_addr, &len))==-1) {
 			sysErr("Server Fault: connect", -4);
 		}
 
 		//reciving the message of the client and saving the length
-		if((recv(connfd, msgBuf, BUF_LEN, 0))==-1){
+		if((recv(connfd, msgBuf, BUF_LEN, 0))==-1) {
 			sysErr("Server Fault: recive message", -5);
 		}
 		//printing the message out
 		printf("Recived message: %s sending back....\n", msgBuf);
 		//sending the message back
-		if((send(connfd, msgBuf, strlen(msgBuf), 0))==-1){
+		if((send(connfd, msgBuf, strlen(msgBuf), 0))==-1) {
 			sysErr("Server Fault: send message", -6);
 		}
 		//closing the connection
