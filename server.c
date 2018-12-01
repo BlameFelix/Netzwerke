@@ -77,6 +77,8 @@ int main(int argc, char **argv) {
 		if((send(connfd, msgBuf, strlen(msgBuf), 0))==-1) {
 			sysErr("Server Fault: send message", -6);
 		}
+		//clearing the buffer
+		memset(&msgBuf,0,BUF_LEN);
 		//closing the connection
 		close (connfd);
 		}
