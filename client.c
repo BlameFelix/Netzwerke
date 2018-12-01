@@ -25,7 +25,7 @@ void usage( char *argv0 ) {
 
 int main(int argc, char **argv) {
 	//checking if a server-ip and a port have been supplied
-	if(argc<3){
+	if(argc<3) {
 		usage(argv[0]);
 	}
 
@@ -35,7 +35,7 @@ int main(int argc, char **argv) {
 
 	//creating TCP based socket
 	int sockfd = 0;
-	if((sockfd = socket(AF_INET, SOCK_STREAM, 0))==-1){
+	if((sockfd = socket(AF_INET, SOCK_STREAM, 0))==-1) {
 		sysErr("Client Fault: socket", -1);
 	}
 
@@ -51,7 +51,7 @@ int main(int argc, char **argv) {
 	serv_addr.sin_port = htons( (u_short)atoi( argv[ 2 ] ) );
 
 	//Connect to server
-	if(connect(sockfd, (struct sockaddr*)&serv_addr, sizeof(serv_addr))==-1){
+	if(connect(sockfd, (struct sockaddr*)&serv_addr, sizeof(serv_addr))==-1) {
 		sysErr("Client Fault: connect", -3);
 	}
 	//user input
@@ -61,12 +61,12 @@ int main(int argc, char **argv) {
 	}
 
 	//send message
-	if((send(sockfd, sendBuf, strlen(sendBuf),0))==-1){
+	if((send(sockfd, sendBuf, strlen(sendBuf),0))==-1) {
 		sysErr("Client fault: send message", -5);
 	}
 	//get the responde
 	char recvBuf[BUF_LEN];
-	if(recv(sockfd, recvBuf, BUF_LEN, 0)==-1){
+	if(recv(sockfd, recvBuf, BUF_LEN, 0)==-1) {
 		sysErr("Client Fault: recive message", -6);
 	}
 	//print the responde
