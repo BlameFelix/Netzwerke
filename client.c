@@ -60,8 +60,6 @@ int main(int argc, char **argv) {
 	if((fgets(sendBuf,BUF_LEN-1,stdin))==NULL) {
 	    sysErr("Client Fault: input", -4);
 	}
-	/*-------------------------------------*/
-	//sendBuf[strlen(sendBuf)+1]="\0";
 	printf("gelesen: %s", sendBuf);
 	//send message
 	if((send(sockfd, sendBuf, strlen(sendBuf),0))==-1) {
