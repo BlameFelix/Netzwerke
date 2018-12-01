@@ -56,10 +56,13 @@ int main(int argc, char **argv) {
 	}
 	//user input
 	printf("Enter String: ");
-	if(fgets(sendBuf,BUF_LEN-1,stdin)==-1) {
+
+	if((fgets(sendBuf,BUF_LEN-1,stdin))==NULL) {
 	    sysErr("Client Fault: input", -4);
 	}
-
+	/*-------------------------------------*/
+	//sendBuf[strlen(sendBuf)+1]="\0";
+	printf("gelesen: %s", sendBuf);
 	//send message
 	if((send(sockfd, sendBuf, strlen(sendBuf),0))==-1) {
 		sysErr("Client fault: send message", -5);
@@ -71,7 +74,9 @@ int main(int argc, char **argv) {
 	}
 	//print the responde
 	write(STDOUT_FILENO, recvBuf, strlen(recvBuf));
-
+	//clearing the buffer
+	memset(&recvBuf, 0, BUF_LEN);
+	memset(&sendBuf,0,BUF_LEN);
 	close(sockfd);
 	return 0;
 }
