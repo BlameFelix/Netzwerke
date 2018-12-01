@@ -55,7 +55,7 @@ int main(int argc, char **argv) {
 	}
 
 	//waiting for requests and setting up queue
-	if(listen(listenfd,5)==-1){
+	if(listen(listenfd,5)==-1) {
 		sysErr("Server Fault: listen", -3);
 	}
 
