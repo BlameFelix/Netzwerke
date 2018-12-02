@@ -1,3 +1,3 @@
 # Netzwerke
 
-echo client server
+TCP based echo client server
